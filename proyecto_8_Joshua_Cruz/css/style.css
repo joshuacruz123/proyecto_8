@@ -1,0 +1,72 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    align-items: flex;
+}
+
+body {
+    min-height: 100vh;
+    min-width: 100vw;
+    background: rgb(83, 200, 220);
+}
+
+.imagenOff {
+    width: 500px;
+    height: 550px;
+    display: flex;
+    align-items: flex;
+    background-image: url("../img/papaNoel.png");
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+
+.imagenOff.on {
+    background-image: url("../img/papaNoel.png");
+}
+
+.Santa button{
+    width: 50px;
+    height: 40px;
+    background-color: rgb(255, 42, 0) ;
+    border-radius: 3.1vh;
+    border: none;
+    color: rgb(247, 242, 240);
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.Santa button:hover{
+    background-color: rgb(247, 242, 240);
+    color: rgb(255, 42, 0);
+}
+
+h1 {
+    margin-top: 15px;
+    color: rgb(249, 111, 5);
+}
+
+#cuentaRegresiva .letras {
+    padding: 6px 16px;
+    border: 5px;
+    border-color: white;
+    margin: 0px 10px;
+    font-size: 20px;
+    font-weight: 500;
+    border-radius: 0.9rem;
+}
+
+#cuentaRegresiva .fecha {
+    padding: 6px 16px;
+    border: 5px;
+    border-color: white;
+    margin: 0px 10px;
+    border-radius: 0.9rem;
+}
+
+#cuentaRegresiva {
+    color: white;
+    font-size: 25px;
+}
