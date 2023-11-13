@@ -1,64 +1,77 @@
-function obtenerTiempoFaltante(fechaLimite) {
-    let ahora = new Date();
-    let tiempoFaltante = (new Date(fechaLimite) - ahora + 1000) / 1000;
-    let segundosFaltantes = ('0' + Math.floor(tiempoFaltante % 60)).slice(-2);
-    let minutosFaltantes = ('0' + Math.floor(tiempoFaltante / 60 % 60)).slice(-2);
-    let horasFaltantes = ('0' + Math.floor(tiempoFaltante / 3600 % 24)).slice(-2);
-    let diasFaltantes = ('0' + Math.floor(tiempoFaltante /(3600 * 24))).slice(-2);
-    let titulo = document.getElementById("titulo");
+let santaStop = document.getElementById("Santa");
+let botonAudio = new Audio('./sound/allWant.mp3');
+let botonPlay = document.getElementById("play");
+let botonPause = document.getElementById("pause");
+
+botonPlay.disabled = true;
+botonPause.disabled = true;
+
+function son(num)
+{
+    if (num == 1)
+    {
+        botonAudio.play();
+    } else
+    {
+        botonAudio.pause();
+    }
+}
+
+
+function obteberTiempoFaltante(fechaLimite)
+{
+    let hora = new Date();
+    tiempoFaltante = (new Date(fechaLimite) - hora + 1000) / 1000;
+    segundosFaltantes = ('0' + Math.floor(tiempoFaltante % 60)).slice(-2);
+    minutosFaltantes = ('0' + Math.floor(tiempoFaltante / 60 % 60)).slice(-2);
+    horaFaltantes = ('0' + Math.floor(tiempoFaltante / 3600 % 24)).slice(-2);
+    diasFaltantes = ('0' + Math.floor(tiempoFaltante / (3600 * 24))).slice(-2);
 
     return {
         segundosFaltantes,
         minutosFaltantes,
-        horasFaltantes,
+        horaFaltantes,
         diasFaltantes,
         tiempoFaltante,
+
     }
+
 };
 
-//console.log(obtenerTiempoFaltante('Dec 25 2023 00:00:00 GMT-0500'))
 
-function cuentaRegresiva(tiempoFaltante,reloj,mensaje) {
-    const a = document.getElementById(reloj);
+function cuentaRegresiva(tiempoFaltante, reloj, mensaje)
+{
+    const e = document.getElementById(reloj);
+    const titulo = document.getElementById("titulo");
+    const dias = document.getElementById("dias");
+    const horas = document.getElementById("horas");
+    const minutos = document.getElementById("minutos");
+    const segundos = document.getElementById("segundos");
 
-const tiempoActual = setInterval(() => {
-    let t = obtenerTiempoFaltante(tiempoFaltante);
-    a.innerHTML = `<div class="fecha">${t.diasFaltantes}</div><div class="letras">d:</div><div class="fecha">${t.horasFaltantes}</div><div class="letras">h:</div><div class="fecha">${t.minutosFaltantes}</div><div class="letras"> m:</div><div class="fecha">${t.segundosFaltantes}</div><div class="letras">s</div>`;
+    const tiempoActual = setInterval(() =>
+    {
+        let t = obteberTiempoFaltante(tiempoFaltante);
+        dias.innerHTML = t.diasFaltantes;
+        horas.innerHTML = t.horaFaltantes;
+        minutos.innerHTML = t.minutosFaltantes;
+        segundos.innerHTML = t.segundosFaltantes;
 
-    if(t.tiempoFaltante <=1) {
-        clearInterval(tiempoActual);
-        a.document.querySelector('.titulo').innerHTML = mensaje;
-    }
-
-}, 1000)
-};
-
-cuentaRegresiva('Dec 25 2023 00:00:00', 'cuentaRegresiva', 'Feliz Navidad :)')
-
-let santa = "off";
-let santaStop = document.getElementById("santaquieto");
-let musica = new Audio('./sound/allWant.mp3');
-
-function play() { 
-    if (santa == "off") {
-        santa = "on";
-        santaStop.classList.add("on");
-        santaStop.addEventListener('click', () => {
-            musica.play();
-        })
-        console.log("On");
-    }
+        if (t.tiempoFaltante <= 1)
+        {
+            dias.innerHTML = "00";
+            horas.innerHTML = "00";
+            minutos.innerHTML = "00";
+            segundos.innerHTML = "00";
+            clearInterval(tiempoActual);
+            titulo.innerHTML = mensaje;
+            santaStop.classList.add("on");
+            botonPlay.classList.add("on");
+            botonPause.classList.add("on");
+            botonPlay.disabled = false;
+            botonPause.disabled = false;
+        } 
+    }, 1000);
 }
 
-
-const botonDetener = document.querySelector(".pausa");
-botonDetener.addEventListener("click", pausa);
-
-function pausa() {
-    santa = "off"
-        santaStop.classList.remove("on");
-        santaStop.addEventListener('click', () => {
-            musica.pause();
-        })
-        console.log("Off");
-}
+cuentaRegresiva('Dec 25 2023 00:00:00', 'cuentaRegresiva', 'Feliz navidad')
+//Nov 08 2023 17:44:00

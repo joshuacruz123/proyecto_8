@@ -7,15 +7,27 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <h1 class="titulo">Faltan para navidad</h1>
-    <div id="cuentaRegresiva">
+    <h1 id="titulo">Faltan para navidad</h1>
+    <div class="cont">
+        <div id="cuentaRegresiva"></div>
+        <div class="campo" id="dias"></div>
+        <div class="campo" id="horas"></div>
+        <div class="campo" id="minutos"></div>
+        <div class="campo" id="segundos"></div>
+        <img src="./img/letras.PNG" alt="" class="letras">
+        <button class="boton1" id="play" onclick="son(1)">Play</button>
+        <button class="boton" id="pause" onclick="son(2)">Pause</button>
     </div>
-    <div class="Santa">
-        <div id="santaquieto" class="imagenOff"></div>
-        <button class="inicio" onclick="play()">Play</button>
-        <button class="pausa">Pause</button>
-</div><div class="fecha"></div><div class="letras"></div>
-    
+<!--   
+    <div class="letra">D</div>
+    <div class="letra">H</div>
+    <div class="letra">M</div>
+    <div class="letra">S</div>
+--> 
+    <div class="baile">
+        <div class="SantaOff" id="Santa">
+        </div>
+    </div>
     <script src="./script.js"></script>
 </body>
 </html>
